@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>002Vue.js 模板语法</title>
+    <!--导入vue    -->
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<style type="text/css">
+    .class1{color: red;}
+</style>
+<body>
+<div id="app">
+    <!--  文本输出  -->
+    <h1>{{message}}</h1>
+    <!-- v-html指令输出HTML   -->
+    <div v-html="msg"></div>
+    <!-- v-bind指令判断属性值，v-model表单元素双向数据绑定   -->
+    <label for="r1">修改颜色</label>
+    <input type="checkbox" v-model="use" id="r1">
+    <br><br>
+    <div v-bind:class="{'class1':use}">v-bind:class 指令</div>
+    <!-- Javascript表达式   -->
+    <h1>{{5+5}}</h1>
+    <h1>{{ok ? 'yes' : 'no'}}</h1>
+    <h1>{{info.split('').reverse().join('')}}</h1>
+    <div v-bind:id="'list-'+id">菜鸟教程</div>
+    <!-- v-if指令   -->
+    <div v-if="seen">看见我了</div>
+    <!-- 指令参数   -->
+    <div><a v-bind:href="url">百度</a></div>
+    <!-- v-bind指令缩写   -->
+    <div><a :href="url">百度</a></div>
+    <!--  v-on事件绑定  -->
+    {{information}}
+    <div><button v-on:click="reverseMessage">反转字符串</button></div>
+    <!--  v-on指令缩写  -->
+    <div><button @click="reverseMessage">反转字符串2</button></div>
+    <!-- 过滤器   -->
+    {{information|capitalize}}
+</div>
+</body>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            message:'Hello World',
+            msg:'<h1>Hello Vue</h1>',
+            use:false,
+            info:'Beijing',
+            ok:true,
+            id:1,
+            seen:true,
+            url:'http://www.baidu.com',
+            information:'documention'
+        },
+        methods:{
+            reverseMessage:function () {
+                vm.information = vm.information.split('').reverse().join('')
+            }
+        },
+        filters:{
+            capitalize:function (value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.slice(1)
+            }
+        }
+    })
+</script>
+</html>
