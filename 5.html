@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>005 计算属性</title>
+    <!--导入vue    -->
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>原始字符串: {{ message }}</p>
+    <p>计算后反转字符串: {{ reversedMessage }}</p>
+    <p>计算后反转字符串:{{reversedMessage2()}}</p>
+</div>
+</body>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'knowledge',
+            name: 'Google',
+            url: 'http://www.google.com'
+        },
+        //缓存性能更好
+        computed: {
+            //计算属性的getter
+            reversedMessage: function () {
+                // `this` 指向 vm 实例
+                return this.message.split('').reverse().join('')
+            },
+            site: {
+                // getter
+                get: function () {
+                    return this.name + ' ' + this.url
+                },
+                // setter
+                set: function (newValue) {
+                    var names = newValue.split(' ')
+                    this.name = names[0]
+                    this.url = names[names.length - 1]
+                }
+            },
+            methods: {
+                reversedMessage2: function () {
+                    return this.message.split('').reverse().join('')
+                }
+            }
+        }
+    })
+    // 调用 setter， vm.name 和 vm.url 也会被对应更新
+    vm.site = '菜鸟教程 http://www.runoob.com';
+    document.write('name: ' + vm.name);
+    document.write('<br>');
+    document.write('url: ' + vm.url);
+</script>
+</html>
