@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>004 vue.js 循环语句</title>
+    <!--导入vue    -->
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ol>
+            <li v-for="site in sites">
+                {{site.name}}
+            </li>
+        </ol>
+        <!-- 模板中使用v-for指令       -->
+        <ul>
+            <template v-for="site in sites">
+                <li>{{ site.name }}</li>
+                <li>--------------</li>
+            </template>
+        </ul>
+        <!--  v-for指令迭代对象      -->
+        <ul>
+            <li v-for="(value,key,index) in object">
+                {{index}} . {{key}} : {{value}}
+            </li>
+        </ul>
+        <!--  迭代整数      -->
+        <ul>
+            <li v-for="n in 10">
+                {{n}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el:'#app',
+        data:{
+            sites:[
+                {name:'Amy'},
+                {name:'Lilei'},
+                {name:'Sunyang'},
+                {name:'Zhaokai'},
+            ],
+            object: {
+                name: '菜鸟教程',
+                url: 'http://www.runoob.com',
+                slogan: '学的不仅是技术，更是梦想！'
+            }
+        }
+    })
+</script>
+</html>
