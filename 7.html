@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>007 样式绑定</title>
+    <!--导入vue    -->
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <style type="text/css">
+        .active {
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+        .text-danger {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--表达式的结果类型:字符串-->
+        <div v-bind:class="{ active: isActive }"></div>
+        <!-- 表达式的结果类型:对象       -->
+        <div v-bind:class="classObject"></div>
+        <!-- 表达式的结果类型：数组       -->
+        <div v-bind:class="[activeClass,errorClass]"></div>
+
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            classObject:{
+                active:true,
+                'text-danger':true
+            },
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        }
+    })
+</script>
+</html>
