@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>001Vue.js 起步</title>
+    <!--导入vue    -->
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="vue_det">
+    <h1>site:{{site}}</h1>
+    <h1>url:{{url}}</h1>
+    <h1>{{details()}}</h1>
+</div>
+<script type="text/javascript">
+    data = {
+        site:'菜鸟教程',
+        url:'www.runoob.com',
+        alexa: '9999'
+    }
+    var vm = new Vue({
+        el:'#vue_det',
+        data:data,
+        methods:{
+            details:function () {
+                return this.site + '学习的不仅是技术，更是梦想！'
+            }
+        }
+    })
+    //引用对象相同
+    document.write(vm.site===data.site)
+    document.write("<br/>")
+    //设置属性，影响原来的数据
+    vm.site = 'Runoob'
+    document.write(data.site)
+    document.write("<br/>")
+    //反之亦然
+    data.alexa = '2345'
+    document.write(vm.alexa)
+    document.write("<br/>")
+    // 实例属性
+    document.write(vm.$data === data)
+    document.write("<br/>")
+    document.write(vm.$el===document.getElementById("vue_det"))
+</script>
+</body>
+</html>
