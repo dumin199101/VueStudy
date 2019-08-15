@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>016 vue.js实例 - 导航菜单</title>
+    <!--导入vue    -->
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="main">
+
+        <!-- 激活的菜单样式为  active 类 -->
+        <!-- 为了阻止链接在点击时跳转，我们使用了 "prevent" 修饰符 (preventDefault 的简称)。 -->
+
+        <nav v-bind:class="active" v-on:click.prevent>
+
+            <!-- 当菜单上的链接被点击时，我们调用了 makeActive 方法, 该方法在 Vue 实例中创建。 -->
+
+            <a href="#" class="home" v-on:click="makeActive('home')">Home</a>
+            <a href="#" class="projects" v-on:click="makeActive('projects')">Projects</a>
+            <a href="#" class="services" v-on:click="makeActive('services')">Services</a>
+            <a href="#" class="contact" v-on:click="makeActive('contact')">Contact</a>
+        </nav>
+
+        <!-- 以下 "active" 变量会根据当前选中的值来自动变换 -->
+
+        <p>您选择了 <b>{{active}} 菜单</b></p>
+    </div>
+</body>
+<script>
+    // 创建一个新的 Vue 实例
+    var demo = new Vue({
+        // DOM 元素，挂载视图模型
+        el: '#main',
+
+        // 定义属性，并设置初始值
+        data: {
+            active: 'home'
+        },
+
+        // 点击菜单使用的函数
+        methods: {
+            makeActive: function(item){
+                // 模型改变，视图会自动更新
+                this.active = item;
+            }
+        }
+    });
+</script>
+</html>
