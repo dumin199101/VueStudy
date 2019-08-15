@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>010 vue.js 组件</title>
+    <!--导入vue    -->
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <runoob></runoob>
+        <runoob2></runoob2>
+        <child message="hello!!!"></child>
+        <input v-model="parentMsg">
+        <br>
+        <child2 v-bind:message2="parentMsg"></child2>
+        <ol>
+            <todo-item v-for="item in sites" v-bind:todo="item"></todo-item>
+        </ol>
+    </div>
+</body>
+<script type="text/javascript">
+     // 全局组件注册
+     Vue.component('runoob',{
+         template:"<h1>自定义组件</h1>"
+     })
+     // 创建根实例
+     new Vue({
+         el: '#app',
+         //局部组件注册
+         components:{
+             'runoob2':{
+                 template:"<h2>自定义组件2</h2>"
+             },
+             'child':{
+                 //声明props传递数据,同样也可以在 vm 实例中像 "this.message" 这样使用
+                 //prop 是单向绑定的：当父组件的属性变化时，将传导给子组件，但是不会反过来
+                 props:['message'],
+                 template:'<p><span>{{message}}</span></p>'
+             },
+             'child2':{
+                 //动态props,可以做数据验证
+                 props:['message2'],
+                 template:'<p><span>{{message2}}</span></p>'
+             },
+             'todo-item':{
+                 //将数据循环遍历传入
+                 props:['todo'],
+                 template:'<li>{{ todo.text }}</li>'
+             }
+         },
+         data:{
+                 parentMsg: '父组件内容',
+                 sites: [
+                     { text: 'Runoob' },
+                     { text: 'Google' },
+                     { text: 'Taobao' }
+                 ]
+         }
+     })
+</script>
+</html>
