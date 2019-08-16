@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>28 事件修饰符之once实例详解</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <a href="http://houdunren.com" @click.prevent.stop.once="links">links</a>
+</div>
+<script>
+    var app = new Vue({
+        el: '#hdcms',
+        data: {},
+        methods: {
+            links(){
+                alert('houdunwang.com');
+            }
+        }
+    });
+</script>
+</body>
+</html>

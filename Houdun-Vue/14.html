@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14 v-if指令</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <input type="text" v-model="age">
+    <span v-if="age<20">小孩</span>
+    <span v-else-if="age<30">青年</span>
+    <span v-else-if="age<50">壮年</span>
+    <span v-else>老年</span>
+    <hr>
+    <input type="checkbox" v-model="copyright"> 接收协议<br/>
+    <span v-if="copyright==false">请先接受协议</span>
+    <button v-else>注册</button>
+</div>
+<script>
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            copyright:false,
+            age:0
+        }
+    });
+</script>
+</body>
+</html>

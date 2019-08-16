@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>18 v-for指令操作对象与数值</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <li v-for="(item,key,index) in user">
+        {{index}} - {{key}} -  {{item}}
+    </li>
+    <table border="1" width="100%">
+        <tr v-for="v in 20">
+            <td>{{v}}</td>
+        </tr>
+    </table>
+</div>
+<script>
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            user: {
+                name: '小明',
+                age: '22',
+                sex: 'boy'
+            }
+        }
+    });
+</script>
+</body>
+</html>

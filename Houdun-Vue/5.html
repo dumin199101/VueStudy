@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5 v-text与v-html指令</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    {{hd}}
+    <h1 v-text="hd"></h1>
+    <h3 v-html="hd"></h3>
+</div>
+<script>
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            hd: '<h1 style="color:red">houdunren.com</h1>'
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>20 变异方法-push</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <li v-for="v in comments">
+        {{v.content}}
+    </li>
+    <textarea v-model="current_content" cols="30" rows="10"></textarea><br>
+    <button v-on:click="push">发表</button>
+</div>
+<script>
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            current_content:'',
+            comments: [
+                {content: '后盾人'},
+                {content: '向军老师'},
+            ]
+        },
+        methods:{
+            push(){
+                var content = {content:this.current_content}
+                this.comments.push(content);
+                this.current_content ='';
+            }
+        }
+    });
+</script>
+</body>
+</html>

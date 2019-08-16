@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4 双向数据绑定与v-once使用</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+<h1>{{hd}}</h1>
+<h3 v-once>{{hd}}</h3>
+<input type="text" v-model="hd">
+</div>
+<script>
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            hd: '后盾人'
+        }
+    });
+</script>
+</body>
+</html>

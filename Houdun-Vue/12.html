@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12 class中的应用表达式</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <style>
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="hdcms">
+    <li v-for="v in news">
+        <span :class="v.status?'success':'error'">{{v.title}}</span>
+        <button v-on:click="changeStatus(v,false)" v-if="v.status">删除</button>
+        <button v-on:click="changeStatus(v,true)" v-if="!v.status">恢复</button>
+    </li>
+</div>
+<script>
+    var app = new Vue({
+        el: '#hdcms',
+        methods: {
+            changeStatus: function (item, status) {
+                item.status = status;
+            }
+        },
+        data: {
+            news: [
+                {title: '后盾人', status: true},
+                {title: 'houdunren.com', status: true},
+            ]
+        }
+    });
+</script>
+</body>
+</html>

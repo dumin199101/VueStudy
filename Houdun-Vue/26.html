@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>26 事件修饰符之使用$event与prevent修复符操作表单</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <form action="" @submit.prevent="post('hdphp')">
+        <h1>{{times}}</h1>
+        <button>提交</button>
+    </form>
+    <form action="" @submit="post2($event)">
+        <h1>{{times}}</h1>
+        <button>提交</button>
+    </form>
+</div>
+<script>
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            times: new Date()
+        },
+        methods: {
+            post(num){
+                alert(num);
+            },
+            post2(event){
+                event.preventDefault();
+            }
+        }
+    });
+</script>
+</body>
+</html>
