@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>48 使用animate.css动画库控制vuejs过渡动画</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="hdcms">
+    <button @click="type=!type">切换</button>
+    <transition enter-active-class="animated slideInDown" leave-active-class="animated zoomOut">
+        <h1 v-if="type">houdunren.com后盾人</h1>
+    </transition>
+</div>
+<script>
+    new Vue({
+        el: '#hdcms',
+        data:{
+            type:false
+        }
+    });
+</script>
+</body>
+</html>
