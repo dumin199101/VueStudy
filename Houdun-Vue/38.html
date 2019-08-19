@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>38 组件之WEB开发中组件使用场景与定义组件的方式</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <hd-slide></hd-slide>
+    <hd-news></hd-news>
+</div>
+</body>
+<script>
+    Vue.component('hd-slide',{
+        template:'<h1>houdunren.com</h1>'
+    })
+    new Vue({
+        el:'#hdcms',
+        components:{
+            'hd-news':{
+                template:'<h2>你好后盾人</h2>'
+            }
+        }
+    })
+</script>
+</html>

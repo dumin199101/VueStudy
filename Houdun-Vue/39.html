@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>39 组件之子组件中data使用实例与text-xtemplate的使用方法</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <hd-news></hd-news>
+    <hr>
+    <hd-news></hd-news>
+    <hr>
+    <hd-news></hd-news>
+</div>
+<!--此处使用x-template,不会被浏览器解析，但是会被Vue解析-->
+<script type="text/x-template" id="hdNews">
+    <div>
+        <li v-for="(v,k) in news">
+            {{v.title}}
+            <button @click="del(k)">删除</button>
+        </li>
+    </div>
+</script>
+
+<script>
+    var hdNews = {
+        template:'#hdNews',
+        //此处使用函数，data返回一个json对象，每次使用一个新的对象，防止多次使用，操作同一个对象
+        data(){
+            return {
+                news:[
+                    {title:'hdphp'},
+                    {title:'hdcms'}
+                ]
+            }
+        },
+        methods:{
+            del(k){
+                return this.news.splice(k,1)
+            }
+        }
+    }
+    new Vue({
+        el:'#hdcms',
+        components:{
+            hdNews
+        }
+    })
+</script>
+</body>
+</html>

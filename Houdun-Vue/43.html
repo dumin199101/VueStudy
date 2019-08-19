@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>43 组件之使用.sync修饰符与computed计算属性超简单的实现美团购物车原理</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <hd-news :lists.sync="goods" @sum="total"></hd-news>
+    总计:{{totalPrice}}元
+</div>
+<script type="text/x-template" id="hdNews">
+    <table border="1" width="90%">
+        <tr>
+            <th>商品名称</th><th>商品价格</th><th>商品数量</th>
+        </tr>
+        <tr v-for="(v,k) in lists">
+            <td>{{v.title}}</td><td>{{v.price}}</td>
+            <td>
+                <input type="text" v-model="v.num">
+            </td>
+        </tr>
+    </table>
+</script>
+<script>
+    var hdNews = {
+        template: "#hdNews",
+        props: ['lists']
+    };
+    new Vue({
+        el: '#hdcms',
+        components: {hdNews},
+        computed:{
+            totalPrice(){
+                var sum=0;
+                this.goods.forEach((v)=>{
+                    sum+=v.num*v.price;
+                })
+                return sum;
+            }
+        },
+        data: {
+            goods:[
+                {title:'iphone7Plus',price:100,num:1},
+                {title:'后盾人会员',price:200,num:1},
+            ]
+        }
+    });
+</script>
+</body>
+</html>

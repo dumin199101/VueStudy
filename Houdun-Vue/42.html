@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>42 组件之子组件使用$on与$emit事件触发父组件实现购物车功能（子组件跟父组件通讯，逆向）</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <hd-news :lists="goods" @sum="total"></hd-news>
+    总计:{{totalPrice}}元
+</div>
+<script type="text/x-template" id="hdNews">
+    <table border="1" width="90%">
+        <tr>
+            <th>商品名称</th><th>商品价格</th><th>商品数量</th>
+        </tr>
+        <tr v-for="(v,k) in lists">
+            <td>{{v.title}}</td><td>{{v.price}}</td>
+            <td>
+                <input type="text" v-model="v.num" @blur="sum">
+            </td>
+        </tr>
+    </table>
+</script>
+<script>
+    var hdNews = {
+        template: "#hdNews",
+        props: ['lists'],
+        methods:{
+            sum(){
+                // emit触发sum自定义事件，自定义事件定义在父组件中
+                this.$emit('sum');
+            }
+        }
+    };
+    new Vue({
+        el: '#hdcms',
+        components: {hdNews},
+        //挂载--钩子函数（自动执行）
+        mounted(){
+            this.total();
+        },
+        data: {
+            totalPrice:0,
+            goods:[
+                {title:'iphone7Plus',price:100,num:1},
+                {title:'后盾人会员',price:200,num:1},
+            ]
+        },
+        methods:{
+            total(){
+                this.totalPrice=0;
+                this.goods.forEach((v)=>{
+                    this.totalPrice+=v.num*v.price;
+                })
+            }
+        }
+    });
+</script>
+</body>
+</html>

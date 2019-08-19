@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>41 组件之props数据的多种验证机制实例详解</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <hd-news :show-del-button="true"></hd-news>
+</div>
+<script type="text/x-template" id="hdNews">
+    <div>
+        <li v-for="(v,k) in lists">
+            {{v.title}}
+            <button @click="del(k)" v-if="showDelButton">删除</button>
+        </li>
+    </div>
+</script>
+String Number Boolean Function Object Array
+<script>
+    var hdNews = {
+        template: "#hdNews",
+        // 此处props传递的是对象，父组件向子组件传递数据：父组件---props---子组件
+        props: {
+            showDelButton: {
+                type: [Boolean, Number],
+                required: true
+            },
+//            showDelButton: {
+//                validator(v){
+//                    return v===1 || v===0;
+//                },
+//            },
+            lists: {
+                type: Array,
+                default(){
+                    return [{title: '后盾人'}]
+                }
+            }
+        },
+        data(){
+            return {};
+        }
+    };
+    new Vue({
+        el: '#hdcms',
+        components: {hdNews},
+        data: {
+            news: [
+                {title: 'hdcms'}, {title: 'hdphp'}, {title: 'houdunren.com'}
+            ]
+        }
+    });
+</script>
+</body>
+</html>
