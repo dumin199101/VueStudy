@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>55 vue-router之路由参数的随意设置与伪静态链接地址处理</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <router-link to="/content">内容 </router-link>
+    <router-view></router-view>
+</div>
+<script type="text/x-template" id="content">
+    <div>
+        cid:{{$route.params.cid}} - id:{{$route.params.id}}
+        <br>
+        <button @click="show">检测参数</button>
+    </div>
+</script>
+<script>
+    const content={
+        template:'#content',
+        methods:{
+            show(){
+                console.log(this.$route.params);
+            }
+        }
+    }
+    let routes=[
+        {path:'/content-:cid-show-:id.html',component:content},
+    ];
+    //要把组件交给路由器
+    let router = new VueRouter({routes});
+    new Vue({
+        el: '#hdcms',
+        router
+    });
+</script>
+</body>
+</html>

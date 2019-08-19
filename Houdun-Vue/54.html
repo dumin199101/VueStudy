@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>54 vue-router之实例讲解定义一下单页面路由</title>
+    <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <router-link to="/hdphp">HDPHP</router-link>
+    <router-link to="/hdcms">HDCMS</router-link>
+    <router-view></router-view>
+</div>
+<script>
+    //定义组件
+    const hdphp = {
+        template:'<h1>HDPHP</h1>'
+    }
+
+    const hdcms = {
+        template: '<h1>HDCMS</h1>'
+    }
+
+    //定义路由规则
+    let routes = [
+        {path:'/hdphp',component:hdphp},
+        {path:'/hdcms',component:hdcms},
+    ]
+
+    //将组件交给路由器
+    let router = new VueRouter({routes})
+
+    //初始化Vue
+    new Vue({
+        el:'#hdcms',
+        router
+    })
+
+
+</script>
+</body>
+</html>
