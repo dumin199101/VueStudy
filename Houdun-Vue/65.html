@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>61 vue-router之通过程序控制路由跳转</title>
+    <title>65 vue-router之使用html5history模式去除hash锚点生成优雅的url</title>
     <script type="text/javascript" src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 </head>
@@ -43,12 +43,13 @@
                 //写业务逻辑
 //                var url = '/content/'+id;
                 //{name:'content',params:{id:id}}
-                var url ={path:'/content/'+id}
-                // 跳转
-                console.log(this.$router);
+                var url ={path:'/content/'+id+'.html'}
                 this.$router.push(url);
             }
         }
+    }
+    const NotFound = {
+        template: '<h1>你请求的页面不存在</h1>',
     }
     const content = {
         template: '#content',
@@ -81,10 +82,14 @@
     }
     let routes = [
         {path: '/', component: home},
-        {path: '/content/:id', component: content,name:'content'}
+        {path: '/content/:id.html', component: content,name:'content'},
+        {path: '*', component: NotFound},
     ];
     //要把组件交给路由器
-    let router = new VueRouter({routes});
+    let router = new VueRouter({
+        mode:'history',
+        routes
+    });
     new Vue({
         el: '#hdcms',
         router
